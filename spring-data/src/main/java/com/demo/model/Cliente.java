@@ -1,11 +1,10 @@
 package com.demo.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "cliente")
@@ -13,6 +12,7 @@ import lombok.Setter;
 @Getter
 public class Cliente {
     @Id // It's a unique property
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "nombre") // You can add a different name
     private String nombre;
@@ -21,4 +21,6 @@ public class Cliente {
     @Column(columnDefinition = "varchar(9)") // You can add constrains
     private String cedula;
     private String telefono;
+    @OneToMany(mappedBy = "cliente")
+    private List<Direccion> direcciones;
 }
