@@ -3,10 +3,8 @@ package com.demo.dto;
 import lombok.Data;
 
 @Data
-public class CuentaDto {
+public class ProductoDto {
     private int id;
-    private String numero;
-    private String tipo;
-
+    private String nombre;
     private Boolean estado;
 }

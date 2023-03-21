@@ -22,8 +22,17 @@ public class Cliente {
     private String cedula;
     private String telefono;
 
-    private String pais;
+    private String paisNacimiento;
     @OneToMany(mappedBy = "cliente")
     private List<Direccion> direcciones;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Cuenta> cuentas;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Cuenta> tarjetas;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Producto> productos;
 
 }

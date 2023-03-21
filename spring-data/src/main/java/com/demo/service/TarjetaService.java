@@ -1,5 +1,6 @@
 package com.demo.service;
 
+import com.demo.model.Tarjeta;
 import com.demo.repository.TarjetaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,4 +9,12 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class TarjetaService {
     TarjetaRepository tarjetaRepository;
+
+    public void cambiarEstadoTarjetaPorId(int id) {
+        Tarjeta tarjeta = tarjetaRepository.findById(id).orElseThrow(
+                () -> { throw new RuntimeException("Tarjeta No Existe");
+                });
+
+        tarjeta.setEstado(!tarjeta.getEstado());
+    }
 }

@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class Direccion {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String direccion;
     private String nomenclatura;

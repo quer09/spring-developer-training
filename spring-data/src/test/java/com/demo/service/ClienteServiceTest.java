@@ -28,7 +28,7 @@ class ClienteServiceTest {
         System.out.println("Listar antes de insertar: " + clienteList);
         System.out.println("lista cuantos tiene: " + clienteList.size());
         ClienteDto clienteDto = new ClienteDto();
-        clienteDto.setApellido("Hidalgo");
+        clienteDto.setApellidos("Hidalgo");
         clienteDto.setNombre("Quervin");
         clienteDto.setCedula("207889845123");
         clienteDto.setTelefono("01452368798");
@@ -59,14 +59,14 @@ class ClienteServiceTest {
         clienteDtoBase.setNombre(clienteDtoBase.getNombre() + "TEST");
         clienteDtoBase.setCedula(clienteDtoBase.getCedula() + "TEST");
         clienteDtoBase.setTelefono(clienteDtoBase.getTelefono() + "TEST");
-        clienteDtoBase.setApellido(clienteDtoBase.getApellido() + "TEST");
+        clienteDtoBase.setApellidos(clienteDtoBase.getApellidos() + "TEST");
         clienteService.actualizarCliente(clienteDtoBase);
 
         ClienteDto clienteDtoBaseUpdated = clienteService.obtenerCliente(1);
 
         System.out.println(clienteDtoBaseUpdated);
         assertEquals("ROBERTOTEST", clienteDtoBaseUpdated.getNombre());
-        assertEquals("PEREZTEST", clienteDtoBaseUpdated.getApellido());
+        assertEquals("PEREZTEST", clienteDtoBaseUpdated.getApellidos());
 
     }
 
@@ -84,5 +84,45 @@ class ClienteServiceTest {
             System.out.println("CLIENTE NO EXISTE: " + e.getMessage());
         }
 
+    }
+
+    @Test
+    void obtenerClientesPorCodigoISOPaisYCuentasActivas() {
+        List<ClienteDto> clientesDto = clienteService.obtenerClientesPorCodigoISOPaisYCuentasActivas("CR");
+        clientesDto.forEach(clienteDto -> {System.out.println("Cuentas Activas" + clienteDto);});
+        assertEquals(1, clientesDto.size());
+    }
+
+    @Test
+    void buscarClientesPorApellido() {
+        List<Cliente> cliente =  clienteService.buscarClientesPorApellido("PEREZ");
+        assertFalse(cliente.isEmpty());
+        assertEquals("PEREZ", cliente.get(0).getApellidos());
+    }
+
+    @Test
+    void buscarClientesPorApellidoNativo() {
+        List<ClienteDto> clienteDto =  clienteService.buscarClientesPorApellidoNativo("PEREZ");
+        assertFalse(clienteDto.isEmpty());
+        assertEquals("PEREZ", clienteDto.get(0).getApellidos());
+    }
+
+    @Test
+    void bucarCLientesByTajetasInactivas() {
+        List<ClienteDto> clienteDto =  clienteService.bucarCLientesByTajetasInactivas("CR");
+        System.out.println("Cliente obtenido:" + clienteDto);
+        assertFalse(clienteDto.isEmpty());
+        assertNotEquals("CR", clienteDto.get(0).getPaisNacimiento());
+    }
+
+    @Test
+    void buscarClientesDinamicamentePorCriterio() {
+        ClienteDto clienteDto = new ClienteDto();
+        clienteDto.setApellidos("SANCHEZ");
+        List<ClienteDto> resultadoCriteriosConDatosDTO = clienteService.buscarClientesDinamicamentePorCriterio(clienteDto);
+        resultadoCriteriosConDatosDTO.forEach(clienteDtoResultado -> {
+            System.out.println("ClienteDto es:" + clienteDtoResultado);
+        });
+        assertEquals(4, resultadoCriteriosConDatosDTO.size());
     }
 }
