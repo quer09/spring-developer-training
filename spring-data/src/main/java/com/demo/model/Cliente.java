@@ -32,7 +32,7 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Cuenta> tarjetas;
 
-    @OneToMany(mappedBy = "cliente")
-    private List<Producto> productos;
+   // @OneToMany(mappedBy = "cliente")
+   // private List<Producto> productos;
 
 }

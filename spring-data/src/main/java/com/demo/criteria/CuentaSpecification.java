@@ -18,6 +18,12 @@ public class CuentaSpecification {
                         -> criteriaBuilder.equal(root.get(fieldName), fieldValue);
     }
 
+    public <T> Specification<T> isTrue(String fieldName, Boolean fieldValue) {
+        return fieldValue == null ? null :
+                (root, query, criteriaBuilder)
+                        -> criteriaBuilder.isTrue(root.get(fieldName));
+    }
+
     public static <T> Specification<T> like(String fieldName, String fieldValue) {
         if (fieldValue != null) {
             String uppercaseValue = MessageFormat.format("%{0}%", fieldValue.trim().toUpperCase(Locale.ROOT)).replaceAll(" ", "%");
@@ -36,15 +42,17 @@ public class CuentaSpecification {
         return like("nombre", cuentaDto.getNumero());
     }
 
-    private Specification<Cuenta> estadoCriteria(CuentaDto cuentaDto) {
-        return like("estado", cuentaDto.getEstado().toString());
+    private Specification<Cuenta> estadoCriteria(CuentaDto cuentaDto){
+        return isTrue("estado", cuentaDto.getEstado());
     }
 
+
     public Specification<Cuenta> buildFilter(CuentaDto cuentaDto){
-        System.out.println(cuentaDto);
+        System.out.println("Terms of Criteria:" + cuentaDto);
         return Specification
                 .where(numeroCriteria(cuentaDto))
                 .and(estadoCriteria(cuentaDto))
                 .and(tipoCriteria(cuentaDto));
     }
+
 }

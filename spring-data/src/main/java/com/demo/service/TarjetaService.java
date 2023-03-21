@@ -10,11 +10,13 @@ import org.springframework.stereotype.Service;
 public class TarjetaService {
     TarjetaRepository tarjetaRepository;
 
-    public void cambiarEstadoTarjetaPorId(int id) {
+    public Tarjeta cambiarEstadoTarjetaPorId(int id) {
         Tarjeta tarjeta = tarjetaRepository.findById(id).orElseThrow(
                 () -> { throw new RuntimeException("Tarjeta No Existe");
                 });
 
         tarjeta.setEstado(!tarjeta.getEstado());
+
+        return tarjeta;
     }
 }
