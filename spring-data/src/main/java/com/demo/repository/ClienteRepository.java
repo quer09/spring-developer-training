@@ -22,4 +22,5 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer>, JpaS
 
     List<Cliente> findClienteByPaisNacimientoIsNotAndTarjetas_EstadoIsFalse(String paisNacimiento);
 
+
 }

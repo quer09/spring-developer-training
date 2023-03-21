@@ -12,4 +12,6 @@ import java.util.List;
 public interface CuentaRepository extends JpaRepository<Cuenta, Integer>, JpaSpecificationExecutor<Cuenta> {
 
     void deleteALLByCliente_Id(int clienteId);
+
+    List<Cuenta> findCuentaByCliente_Id(int clienteId);
 }

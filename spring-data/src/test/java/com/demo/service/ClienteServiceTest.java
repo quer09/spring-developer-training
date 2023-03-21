@@ -1,6 +1,7 @@
 package com.demo.service;
 
 import com.demo.dto.ClienteDto;
+import com.demo.dto.ProductoDto;
 import com.demo.model.Cliente;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -124,5 +125,15 @@ class ClienteServiceTest {
             System.out.println("ClienteDto es:" + clienteDtoResultado);
         });
         assertEquals(4, resultadoCriteriosConDatosDTO.size());
+    }
+
+    @Test
+    void obtenerTodosProductosClientesPorId() {
+
+        ProductoDto productoDto = clienteService.obtenerTodosProductosClientesPorId(1);
+        
+        System.out.println("Productos del Cliente:" + productoDto);
+
+        assertEquals(2, productoDto.getCuentas().size());
     }
 }
