@@ -1,6 +1,7 @@
 package com.demo.service;
 
-import com.demo.dto.CuentaDto;
+import com.demo.springdata.dto.CuentaDto;
+import com.demo.springdata.service.CuentaService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

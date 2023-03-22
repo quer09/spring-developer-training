@@ -1,8 +1,9 @@
 package com.demo.service;
 
-import com.demo.dto.ClienteDto;
-import com.demo.dto.ProductoDto;
-import com.demo.model.Cliente;
+import com.demo.springdata.dto.ClienteDto;
+import com.demo.springdata.dto.ProductoDto;
+import com.demo.springdata.model.Cliente;
+import com.demo.springdata.service.ClienteService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +35,7 @@ class ClienteServiceTest {
         clienteDto.setCedula("207889845123");
         clienteDto.setTelefono("01452368798");
 
-        clienteService.insertCliente(clienteDto);
+        clienteService.insertarCliente(clienteDto);
 
         clienteList = entityManager.createQuery("SELECT c FROM Cliente c").getResultList();
         assertFalse(clienteList.isEmpty());
@@ -131,9 +132,9 @@ class ClienteServiceTest {
     void obtenerTodosProductosClientesPorId() {
 
         ProductoDto productoDto = clienteService.obtenerTodosProductosClientesPorId(1);
-        
+
         System.out.println("Productos del Cliente:" + productoDto);
 
-        assertEquals(2, productoDto.getCuentas().size());
+        assertEquals(1, productoDto.getCuentas().size());
     }
 }

@@ -1,7 +1,7 @@
 package com.demo.service;
 
-import com.demo.dto.TarjetaDto;
-import com.demo.model.Tarjeta;
+import com.demo.springdata.dto.TarjetaDto;
+import com.demo.springdata.service.TarjetaService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
