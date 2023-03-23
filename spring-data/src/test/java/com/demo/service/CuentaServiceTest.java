@@ -27,4 +27,14 @@ class CuentaServiceTest {
                 }
         );
     }
+
+    @Test
+    void insertarCuenta() {
+        CuentaDto cuentaDto = new CuentaDto();
+        cuentaDto.setNumero("123456");
+        cuentaDto.setTipo("AHORROS");
+        cuentaDto.setEstado(true);
+
+        cuentaService.insertarCuenta(cuentaDto);
+    }
 }

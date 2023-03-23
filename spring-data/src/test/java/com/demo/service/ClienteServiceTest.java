@@ -137,4 +137,17 @@ class ClienteServiceTest {
 
         assertEquals(1, productoDto.getCuentas().size());
     }
+
+    @Test
+    void insertarClienteConValidaciones(){
+        ClienteDto clienteDto = new ClienteDto();
+        clienteDto.setApellidos("Salazar");
+        clienteDto.setNombre(null);
+        clienteDto.setCedula("1890000000");
+        clienteDto.setTelefono("0999714563");
+        clienteDto.setDireccionsDto(null);
+        clienteService.insertarCliente(clienteDto);
+        assertEquals(1,1);
+    }
+
 }

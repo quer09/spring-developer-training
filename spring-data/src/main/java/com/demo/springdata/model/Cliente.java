@@ -1,6 +1,7 @@
 package com.demo.springdata.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,7 +16,9 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "nombre") // You can add a different name
+    @NotNull(message = "Name cannot be null")
     private String nombre;
+
     @Column(length = 30)
     private String apellidos;
     @Column(columnDefinition = "varchar(12)") // You can add constrains
