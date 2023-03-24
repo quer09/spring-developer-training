@@ -15,4 +15,9 @@ public interface CuentaRepository extends JpaRepository<Cuenta, Integer>, JpaSpe
     List<Cuenta> findCuentaByCliente_Id(int clienteId);
 
     List<Cuenta> findCuentaByCliente_IdAndEstadoIsTrue(int clienteId);
+
+
+    Cuenta findCuentaById(int cueentaId);
+
+
 }

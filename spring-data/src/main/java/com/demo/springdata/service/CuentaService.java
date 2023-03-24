@@ -47,6 +47,27 @@ public class CuentaService {
         return cuentasPorCliente;
     }
 
+    public CuentaDto obtenerCuenta(int idCuenta) {
+
+        Cuenta cuenta = cuentaRepository.findById(idCuenta)
+                .orElseThrow(
+                        () -> {
+                            throw new RuntimeException("Cuenta No Existe");
+                        });
+        return fromCuentaToDto(cuenta);
+    }
+
+    public void desactivarCuenta(int idCuenta) {
+        Cuenta cuenta = cuentaRepository.findById(idCuenta)
+                .orElseThrow(
+                        () -> {
+                            throw new RuntimeException("Cuenta No Existe");
+                        });
+        if (cuenta.getEstado()) {
+            cuenta.setEstado(!cuenta.getEstado());
+            cuentaRepository.save(cuenta);
+        }
+    }
 
     public void insertarCuenta(CuentaDto cuentaDto) {
         Cuenta cuenta = new Cuenta();
@@ -60,5 +81,7 @@ public class CuentaService {
 
         cuentaRepository.save(cuenta);
     }
+
+
 
 }
