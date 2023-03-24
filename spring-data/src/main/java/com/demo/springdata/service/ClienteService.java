@@ -99,6 +99,8 @@ public class ClienteService {
     public void eliminarCliente(int idCliente) {
         direccionRepository.deleteALLByCliente_Id(idCliente);
         cuentaRepository.deleteALLByCliente_Id(idCliente);
+        inversionRepository.deleteALLByCliente_Id(idCliente);
+        tarjetaRepository.deleteALLByCliente_Id(idCliente);
         clienteRepository.deleteById(idCliente);
     }
 
@@ -192,4 +194,17 @@ public class ClienteService {
 
         return productoDto;
     }
+
+    public List<ClienteDto> obtenerClientes() {
+
+        List<ClienteDto> clienteDto = clienteRepository.findAll().
+                stream().map(this::fromClienteToDto).collect(Collectors.toList());
+
+        return clienteDto;
+    }
+
+    /* public List<ClienteDto> obtenerClientes() { //You can return the list in the list
+        return clienteRepository.findAll().
+                stream().map(this::fromClienteToDto).collect(Collectors.toList());
+    }*/
 }

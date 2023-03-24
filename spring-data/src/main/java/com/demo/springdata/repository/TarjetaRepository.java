@@ -12,4 +12,6 @@ public interface TarjetaRepository extends JpaRepository<Tarjeta, Integer> {
     List<Tarjeta> findTarjetaByCliente_Id(int clienteId);
 
     List<Tarjeta> findTarjetaByCliente_IdAndEstadoIsTrue(int clienteId);
+
+    void deleteALLByCliente_Id(int clienteId);
 }
