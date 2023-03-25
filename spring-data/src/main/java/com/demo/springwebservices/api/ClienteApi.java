@@ -60,13 +60,13 @@ public class ClienteApi {
     }
 
     @PutMapping
-    public void actualizarCliente(@RequestBody ClienteDto clienteDto) {
+    public void actualizarCliente(@Valid @RequestBody ClienteDto clienteDto) {
         log.info("Cliente a Editar: {}", clienteDto);
         clienteService.actualizarCliente(clienteDto);
     }
 
     @DeleteMapping("/{id}")
-    public void eliminarCliente(@PathVariable int id) {
+    public void eliminarCliente(@Valid @PathVariable int id) {
         log.info("Id de Cliente a eliminar: {}", id);
         clienteService.eliminarCliente(id);
     }

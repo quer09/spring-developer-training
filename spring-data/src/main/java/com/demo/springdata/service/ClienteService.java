@@ -207,4 +207,20 @@ public class ClienteService {
         return clienteRepository.findAll().
                 stream().map(this::fromClienteToDto).collect(Collectors.toList());
     }*/
+
+    public io.spring.guides.gs_producing_web_service.Cliente obtenerClienteParaSoap(int idCliente) {
+        Cliente cliente = clienteRepository.findById(idCliente)
+                .orElseThrow(() -> {
+                    throw new RuntimeException("Cliente no existe");
+                });
+        io.spring.guides.gs_producing_web_service.Cliente clienteWS = new io.spring.guides.gs_producing_web_service.Cliente();
+        clienteWS.setId(cliente.getId());
+        clienteWS.setApellidos(cliente.getApellidos());
+        clienteWS.setNombre(cliente.getNombre());
+        clienteWS.setCedula(cliente.getCedula());
+        clienteWS.setTelefono(cliente.getTelefono());
+        clienteWS.setPaisNacimiento(cliente.getPaisNacimiento());
+
+        return  clienteWS;
+    }
 }

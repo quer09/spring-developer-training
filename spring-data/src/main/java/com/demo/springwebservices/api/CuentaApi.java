@@ -31,10 +31,10 @@ public class CuentaApi {
         return cuentaService.buscarCuentasPorCliente(id);
     }
 
-    @GetMapping("/desactivar/{id}")
-    public void desactivarCuenta(@PathVariable int id) {
-        log.info("Desactivar Cuenta: {}", id);
-        cuentaService.desactivarCuenta(id);
+    @PostMapping("/desactivar")
+    public void desactivarCuenta(@Valid @RequestBody  CuentaDto cuentaDto) {
+        log.info("Desactivar Cuenta: {}", cuentaDto);
+        cuentaService.desactivarCuenta(cuentaDto);
     }
 
     @PostMapping
@@ -43,6 +43,10 @@ public class CuentaApi {
         cuentaService.insertarCuenta(cuentaDto);
     }
 
-
+    @PutMapping
+    public void actualizarCuenta(@Valid @RequestBody CuentaDto cuentaDto) {
+        log.info("Cuenta a Editar: {}", cuentaDto);
+        cuentaService.actualizarCuenta(cuentaDto);
+    }
 
 }

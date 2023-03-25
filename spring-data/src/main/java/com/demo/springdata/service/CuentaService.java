@@ -27,6 +27,7 @@ public class CuentaService {
     private CuentaDto fromCuentaToDto(Cuenta cuenta){
         CuentaDto cuentaDto = new CuentaDto();
         BeanUtils.copyProperties(cuenta, cuentaDto);
+        cuentaDto.setIdCliente(cuenta.getCliente().getId());
         return cuentaDto;
     }
 
@@ -57,16 +58,15 @@ public class CuentaService {
         return fromCuentaToDto(cuenta);
     }
 
-    public void desactivarCuenta(int idCuenta) {
-        Cuenta cuenta = cuentaRepository.findById(idCuenta)
+    public CuentaDto desactivarCuenta(CuentaDto cuentaDto) {
+        Cuenta cuenta = cuentaRepository.findById(cuentaDto.getId())
                 .orElseThrow(
                         () -> {
                             throw new RuntimeException("Cuenta No Existe");
                         });
-        if (cuenta.getEstado()) {
-            cuenta.setEstado(!cuenta.getEstado());
-            cuentaRepository.save(cuenta);
-        }
+        cuenta.setEstado(false);
+        cuentaRepository.save(cuenta);
+        return fromCuentaToDto(cuenta);
     }
 
     public void insertarCuenta(CuentaDto cuentaDto) {
@@ -82,6 +82,15 @@ public class CuentaService {
         cuentaRepository.save(cuenta);
     }
 
+    public void actualizarCuenta(CuentaDto cuentaDto) {
 
+        Cuenta cuenta = new Cuenta();
+        cuenta.setId(cuentaDto.getId());
+        cuenta.setNumero(cuentaDto.getNumero());
+        cuenta.setTipo(cuentaDto.getTipo());
+        cuenta.setEstado(cuentaDto.getEstado());
+        cuentaRepository.save(cuenta);
+
+    }
 
 }
