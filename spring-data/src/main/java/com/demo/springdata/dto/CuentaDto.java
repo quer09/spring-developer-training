@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class CuentaDto {
     private int id;
-    private int IdCliente;
+    private int idCliente;
     private String numero;
     private String tipo;
 

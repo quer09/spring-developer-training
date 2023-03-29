@@ -78,6 +78,7 @@ public class ClienteService {
         clienteDto.setApellidos((cliente.getApellidos()));
         clienteDto.setNombre(cliente.getNombre());
         clienteDto.setCedula(cliente.getCedula());
+        clienteDto.setTelefono(cliente.getTelefono());
         clienteDto.setPaisNacimiento(cliente.getPaisNacimiento());
 
         return clienteDto;

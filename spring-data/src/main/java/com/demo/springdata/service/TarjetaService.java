@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class TarjetaService {
-    TarjetaRepository tarjetaRepository;
+    private TarjetaRepository tarjetaRepository;
 
     private TarjetaDto fromClienteToDto(Tarjeta tarjeta){
         TarjetaDto tarjetaDto = new TarjetaDto();
