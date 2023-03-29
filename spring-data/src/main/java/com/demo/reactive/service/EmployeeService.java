@@ -14,7 +14,7 @@ public class EmployeeService {
     EmployeeRepository employeeRepository;
 
     public void create(Employee employee){
-        employeeRepository.save(employee);
+        employeeRepository.save(employee).subscribe();
     }
 
     public Mono<Employee> findById(Integer id){
