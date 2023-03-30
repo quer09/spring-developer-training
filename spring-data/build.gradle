@@ -63,6 +63,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-artemis'
 	implementation 'org.apache.activemq:artemis-jakarta-server'
 	implementation 'org.springframework.boot:spring-boot-starter-integration'
+	implementation group: "com.twilio.sdk", name: "twilio", version: "9.2.0"
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-test'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 	implementation 'wsdl4j:wsdl4j'
 	jaxb("org.glassfish.jaxb:jaxb-xjc")
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
